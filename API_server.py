@@ -3,9 +3,7 @@ from io import StringIO
 from fastapi import UploadFile, FastAPI
 import uvicorn
 
-
 app = FastAPI()
-
 
 
 @app.post('/assignWithCsv')
@@ -26,6 +24,4 @@ def upload_csv(file: UploadFile):
     print(list_of_soldiers)
 
     return {'message': f'Successfully processed CSV with {len(rows)} rows',
-        'list_of_soldiers': list_of_soldiers}
-
-
+            'list_of_soldiers': list_of_soldiers}

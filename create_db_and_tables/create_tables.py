@@ -24,5 +24,3 @@ engine = create_engine("sqlite:///data/soldiers.db")  # , echo=True
 
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
-
-
