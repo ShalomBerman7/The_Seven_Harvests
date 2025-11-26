@@ -2,13 +2,15 @@ from csv import reader
 from io import StringIO
 from fastapi import UploadFile, FastAPI
 import uvicorn
+# from sorting import selection_sort
+from load_csv import import_data
 
 
 app = FastAPI()
 
 
 
-@app.post('/upload-csv')
+@app.post('/assignWithCsv')
 def upload_csv(file: UploadFile):
     if file.content_type != 'text/csv':
         return {'error': 'File must be a CSV'}
@@ -20,14 +22,15 @@ def upload_csv(file: UploadFile):
     rows = list(read)
 
     for line in rows:
-        print(line)
+        import_data(str(line))
+    #     print(line)
 
     return {
         'filename': file.filename,
         'content_type': file.content_type,
         'total_rows': len(rows),
         'columns': header,
-        'data': rows[0:5],
+        'data': rows,
         'message': f'Successfully processed CSV with {len(rows)} rows'
     }
 
