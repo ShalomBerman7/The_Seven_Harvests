@@ -2,7 +2,6 @@ from csv import reader
 from io import StringIO
 from fastapi import UploadFile, FastAPI
 import uvicorn
-from load_csv import import_data
 
 
 app = FastAPI()
@@ -20,16 +19,13 @@ def upload_csv(file: UploadFile):
     header = next(read)
     rows = list(read)
 
-    for line in rows:
-        print(line)
+    list_of_soldiers = []
 
-    return {
-        'filename': file.filename,
-        'content_type': file.content_type,
-        'total_rows': len(rows),
-        'columns': header,
-        'data': rows[:5],
-        'message': f'Successfully processed CSV with {len(rows)} rows'
-    }
+    for line in rows:
+        list_of_soldiers.append(line)
+    print(list_of_soldiers)
+
+    return {'message': f'Successfully processed CSV with {len(rows)} rows',
+        'list_of_soldiers': list_of_soldiers}
 
 
