@@ -2,7 +2,6 @@ from csv import reader
 from io import StringIO
 from fastapi import UploadFile, FastAPI
 import uvicorn
-# from sorting import selection_sort
 from load_csv import import_data
 
 
@@ -22,18 +21,15 @@ def upload_csv(file: UploadFile):
     rows = list(read)
 
     for line in rows:
-        import_data(str(line))
-    #     print(line)
+        print(line)
 
     return {
         'filename': file.filename,
         'content_type': file.content_type,
         'total_rows': len(rows),
         'columns': header,
-        'data': rows,
+        'data': rows[:5],
         'message': f'Successfully processed CSV with {len(rows)} rows'
     }
 
 
-if __name__ == '__main__':
-    uvicorn.run(app, host="localhost", port=8000)

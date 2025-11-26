@@ -2,11 +2,10 @@
 
 
 def import_data(rows):
-    with open("soldiers.csv", "w") as f:
+    with open("soldiers.txt", "a") as f:
         f.write(f'{rows}')
     return 'add '
 
-# import_data('fjdksl00000000')
 
 # def load_data():
 #     filepath = "C:\\Users\\משתמש זה\\The_Seven_Harvests"
